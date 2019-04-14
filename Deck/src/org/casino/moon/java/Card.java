@@ -188,7 +188,7 @@ public class Card {
 		}
 	}
 	
-	// 덱만들기 = 스테딕 메소드
+	// 덱만들기 = 스테딕 메소드.
 	public static Card[] deck() {
 		Card[] deck = new Card[NEW_DECK_SIZE];
 		for (int i = 0; i < deck.length; i++) {
