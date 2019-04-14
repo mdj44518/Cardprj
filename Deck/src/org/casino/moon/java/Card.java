@@ -4,14 +4,13 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Card {
-	//테스트 커밋 고우
+	//속성
 	public final static int NEW_DECK_SIZE = 54;
 	private int rankNum;
 	private int sortNum;
 	private String face;
 	private String rank;
 	private String color;
-	// 속성
 		
 	public Card() {
 		int rankNum = (int)(Math.random() * NEW_DECK_SIZE) + 1;
@@ -51,6 +50,7 @@ public class Card {
 		}
 		if (rankNum == 54) {
 			face = "joker(B)";
+			return;
 		}
 		if      (rankNum % 4 == 1) {face = "clover";}
 		else if (rankNum % 4 == 2) {face = "diamond";}
@@ -246,9 +246,12 @@ public class Card {
 		}
 	}
 	// 덱 셔플해주기
+	public static void shuffle(Card[] deck) {
+		Collections.shuffle(Arrays.asList(deck));
+	}
 	// 덱을주면 그 덱 내용에서 카드 한장뽑기     return Card
+	
 	// 덱을주고 그 덱 내용에서 카드 여러장 뽑기 return Card[]
-	// 덱 섞기
 	
 
 	@Override
@@ -262,8 +265,10 @@ public class Card {
 			f += (char)9825;
 		} else if (face.equals("spade")) {
 			f += (char)9824;
-		} else if (face.equals("joker")) {
-			return "[JOKER]";
+		} else if (face.equals("joker(R)")) {
+			return "[JOKER(R)]";
+		} else if (face.equals("joker(B)")) {
+			return "[JOKER(B)]";
 		} else {
 			return "[NoCard]";
 		}
