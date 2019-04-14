@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class Card {
-	
+	//테스트 커밋 고우
 	public final static int NEW_DECK_SIZE = 54;
 	private int rankNum;
 	private int sortNum;
