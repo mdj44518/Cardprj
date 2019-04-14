@@ -11,7 +11,7 @@ public class Card {
 	private String face;
 	private String rank;
 	private String color;
-	
+	// 속성
 		
 	public Card() {
 		int rankNum = (int)(Math.random() * NEW_DECK_SIZE) + 1;
@@ -30,8 +30,8 @@ public class Card {
 		return sortNum;
 	}
 
-	private void setSortNum(int rankNum) {
-		if (rankNum >= 49 || rankNum <= 52) {
+	public void setSortNum(int rankNum) {
+		if (rankNum >= 49 && rankNum <= 52) {
 			sortNum = 1 + (13 * ((rankNum - 1) % 4));
 		} else if (rankNum <= 48) {
 			sortNum = 2 + ((rankNum - 1) / 4) + (((rankNum - 1) % 4) * 13);
@@ -45,9 +45,12 @@ public class Card {
 	}
 
 	private void setFace(int rankNum) {
-		if (rankNum > 52) {
-			face = "joker";
+		if (rankNum == 53) {
+			face = "joker(R)";
 			return;
+		}
+		if (rankNum == 54) {
+			face = "joker(B)";
 		}
 		if      (rankNum % 4 == 1) {face = "clover";}
 		else if (rankNum % 4 == 2) {face = "diamond";}
@@ -61,7 +64,7 @@ public class Card {
 
 	private void setRank(int rankNum) {
 		if (rankNum > 52) {
-			rank = String.valueOf(rankNum);
+			this.rank = String.valueOf(rankNum);
 			return;
 		}
 		if ((rankNum-1) / 4 == 9)  {rank = "J"; return;}
@@ -76,7 +79,7 @@ public class Card {
 	}
 
 	private void setColor(int rankNum) {
-		if (rankNum == 53 || rankNum % 4 == 2 || rankNum % 4 == 3) {
+		if ((rankNum == 53 || rankNum % 4 == 2 || rankNum % 4 == 3) && rankNum != 54) {
 			color = "red";
 		} else {
 			color = "black";
@@ -96,12 +99,11 @@ public class Card {
 	public static Card choiceCard(String face, int rank) {
 		Card rtCard = new Card();
 		if (face.equalsIgnoreCase("joker")) {
-			rtCard.rankNum = 54;
-			rtCard.sortNum = 54;
-			rtCard.face = "joker";
-			rtCard.rank = "54";
-			rtCard.color = "black";
-			return rtCard;
+			rtCard.rankNum = 53;
+			rtCard.sortNum = 53;
+			rtCard.face = "joker(R)";
+			rtCard.rank = "53";
+			rtCard.color = "red";
 		}
 		if ((face.equalsIgnoreCase("clover") || face.equalsIgnoreCase("diamond") || face.equalsIgnoreCase("heart") || face.equalsIgnoreCase("spade"))
 				&& (rank >= 1 && rank <= 13)) {
@@ -141,12 +143,12 @@ public class Card {
 		return rtCard;
 	}
 	// 카드 체인지 card.chainge("spade", 4);
-	public void change(String face, int rank) {
+	public void changeCard(String face, int rank) {
 		if (face.equalsIgnoreCase("joker")) {
-			this.rankNum = 54;
-			this.face = "joker";
-			this.rank = "54";
-			this.color = "black";
+			this.rankNum = 53;
+			this.face = "joker(R)";
+			this.rank = "53";
+			this.color = "red";
 			return;
 		}
 		if ((face.equalsIgnoreCase("clover") || face.equalsIgnoreCase("diamond") || face.equalsIgnoreCase("heart") || face.equalsIgnoreCase("spade"))
@@ -244,7 +246,7 @@ public class Card {
 		}
 	}
 	// 덱 셔플해주기
-	// 덱을주고 그 덱 내용에서 카드 한장뽑기     return Card
+	// 덱을주면 그 덱 내용에서 카드 한장뽑기     return Card
 	// 덱을주고 그 덱 내용에서 카드 여러장 뽑기 return Card[]
 	// 덱 섞기
 	
@@ -267,7 +269,6 @@ public class Card {
 		}
 		return "[" + f + " " + rank + "]";
 	}
-	
 	
 	
 }
